@@ -11,3 +11,15 @@ Make sure you have the following before running the code:
 To get the code:
 
 `$ git clone https://github.com/daniawareh/Weird-but-True-Web-Application.git`
+
+Change directory:
+
+`$ cd Weird-but-True-Web-Application`
+
+Install dependencies:
+
+`$ npm install`
+
+Start the web app:
+
+`$ npm start`
