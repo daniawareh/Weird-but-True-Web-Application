@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  .row
+    .card-columns.white-bgd.card-shadow.col-xs-12.col-sm-10.col-sm-offset-1
+      .card
+        .row.card-header
+          h1.card-title.text-center= title
+        .row.card-block
+          .col-sm-12
+            p.primary-text.text-center Find fact by category
+            img.img-responsive.center-block(src="/images/category.gif", alt="Gif image that walks through finding fact by category")
+            br
+            p
+              small Step by step walk through of finding a fact by using 
+                strong categories/tags
+                ol
+                  li First, select 
+                    strong Find a fact. 
+                  li Then, select 
+                    strong Find by category. 
+                  li Lastly, select one or more categories. Selecting multiple categories narrows your search.
+        .row.card-block
+          .col-sm-12
+            p.primary-text.text-center Find fact by category
+            img.img-responsive.center-block(src="/images/keyword.gif", alt="Gif image that walks through finding fact by keyword(s)")
+            br
+            p
+              small Step by step walk through of finding a fact by using 
+                strong keywords
+                ol
+                  li First, select 
+                    strong Find a fact. 
+                  li Then, select 
+                    strong Find by title or description 
+                  li Lastly, separate out your keyword(s) using a comma (,). Selecting multiple keywords broadens your search
+        .row.card-block
+          .col-sm-12
+            p.primary-text.text-center Get a random weird but true fact
+            img.img-responsive.center-block(src="/images/random.gif", alt="Gif image that shows service simulator retrieving a random weird but true fact from published Alexa skill")
+            br
+            p
+              small Getting a random weird but true fact from published Alexa skill using Service Simulator

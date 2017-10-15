@@ -3,6 +3,11 @@ module.exports.features = function(req, res){
   res.render('index', {title: 'Main Menu'});
 };
 
+/* Controller for gif page */
+module.exports.gifs = function(req, res){
+  res.render('gifs', {title: 'App Screenshots'});
+};
+
 /* Controller for fact finder menu */
 module.exports.find = function(req, res){
   res.render('find', {title: 'Fact Finder'});
