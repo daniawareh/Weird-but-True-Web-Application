@@ -1,6 +1,6 @@
 /* Controller for home/landing/menu page */
 module.exports.features = function(req, res){
-  res.render('index', {title: 'Menu'});
+  res.render('index', {title: 'Main Menu'});
 };
 
 /* Controller for fact finder menu */
