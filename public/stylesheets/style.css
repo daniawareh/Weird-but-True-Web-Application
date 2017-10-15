@@ -1,8 +1,247 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Cambay|Lato:700|Khula:300,600');
+
+.green-svg-bgd {
+  background-image: url("/images/green-pattern.svg");
 }
 
-a {
-  color: #00B7FF;
+.card-columns {
+  /* Sizing, Margin, Padding */
+  margin-top: 40px
 }
+
+.white-bgd {
+  background-color: #F5F5F5; 
+}
+
+.trans-bgd {
+  background-color: transparent;
+}
+
+.charcoal-bgd {
+  background-color: #555555;
+}
+
+.fa-lock, .fa-user {
+  position: relative;
+  left: 2em;
+  color: white;
+}
+
+.login{
+  width: 40%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid;
+  border-bottom-color: white;
+  margin: 1em;
+  padding: 2px;
+  padding-left: 2em;
+}
+
+input.login::placeholder {
+  color: white;
+  font-family: 'Cambay', sans-serif;
+}
+
+input.login:focus {
+  outline-width: 0;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.card-shadow {
+  /* Borders, Shadows */
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.3);
+}
+
+.map-card-block {
+  padding-bottom: .1em;
+}
+
+.card-block {
+  padding-bottom: 2em;
+}
+
+.login-title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  color: #FFFFFF;
+  margin: 20px;
+  text-shadow: 1px 1px 3px #7F8C8D;
+}
+
+.card-title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  color: #689F38;
+  margin: 20px;
+}
+
+.card-title-sm {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: #689F38;
+  margin: 40px;
+}
+
+.map-card-title-sm {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: #689F38;
+  margin: 20px;
+}
+
+#logo {
+  max-width: 180px;
+  margin: 0 auto 40px;
+}
+
+.btn {
+  padding: 10px;
+}
+
+.btn p {
+  font-family: "Cambay";
+  font-size: 16px;
+  margin: 0;
+}
+
+.btn-primary {
+  background-color: #555555;
+  width: 80%;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #81C784;
+  border: none;
+}
+
+.btn-a, .btn-a:active, .btn-a:hover, .btn-a:focus, .btn-a:active:focus, .btn-a:active:hover {
+  text-decoration: none;
+}
+
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+  background-color: #70ad72;
+  border: none;
+}
+
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
+  background-color: #70ad72;
+  border: none;
+}
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.primary-text {
+  font-family: "Cambay";
+  font-weight: regular;
+  font-size: 24px;
+}
+
+.primary-margin {
+  margin-bottom: 2em;
+}
+
+.primary-color {
+  color: #689F38;
+}
+
+.charcoal-color {
+  color: #555555;
+}
+
+.chalk-grey {
+  color: #717171;
+}
+
+.no-underline:hover {
+  text-decoration: none;
+}
+
+.fa-map-o:hover {
+    color: #555555;
+}
+
+.info-item {
+  font-family: "Cambay";
+  font-weight: regular;
+  font-size: 14px;
+}
+
+.info-badge {
+  color: #555555;
+  background-color: transparent;
+}
+
+#pole-icon {
+  height: 2.5em;
+}
+
+span.glyphicon-big {
+    font-size: 1.3em;
+}
+
+.flame {
+  height: 25px;
+}
+
+.bottom {
+  vertical-align: bottom;
+}
+
+.plot-text {
+  font-family: "Cambay";
+  font-weight: regular;
+  font-size: 14px;
+  color: #555555;
+  margin-left: 2px;
+}
+
+.img-thumbnail {
+    border: 0 none;
+    box-shadow: none;
+    padding-left: 0;
+    padding-bottom: 6px;
+    height: 50px;
+}
+
+.map-card-subtitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: regular;
+  font-size: 24px;
+  color: #717171;
+  margin-top: 28px;
+  margin-bottom: 20px;
+}
+
+.arrow {
+  color: #555555;
+}
+
+.left-arrow {
+  padding-left: 15px;
+}
+
+.figure {
+  width: 50px;
+  padding-top: 5px;
+  padding-right: 5px;
+  margin: 0;
+}
+
+ 

@@ -1,6 +1,21 @@
 extends layout
 
 block content
-  h1= title
-  p
-   | #{desc}
+  .row
+    .card-columns.white-bgd.card-shadow.col-xs-12.col-sm-10.col-sm-offset-1
+      .card
+        .row.card-header
+          h1.card-title.text-center= title
+          img#logo.img-fluid.center-block.animated.jello(src="/images/oasis.svg", alt="Image of tropical island with palm trees to represent logo")
+        .row.card-block
+            p.primary-text.text-center Select a menu option below
+        .row.card-block
+          .col-md-6.col-centered
+            a.btn-a.text-center(href="/find")
+              .btn.charcoal-bgd.btn-primary.center-block
+                p Find a fact
+        .row.card-block
+          .col-md-6.col-centered
+            a.btn-a.text-center(href="/#")
+              .btn.charcoal-bgd.btn-primary.center-block
+                p Add a fact
