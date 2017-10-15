@@ -66,7 +66,7 @@ input.login:focus {
 }
 
 .card-block {
-  padding-bottom: 2em;
+  padding-bottom: 1.2em;
 }
 
 .login-title {
@@ -244,4 +244,30 @@ span.glyphicon-big {
   margin: 0;
 }
 
+input[type="checkbox"]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+}
+
+.checkbox-inline, .checkbox {
+   line-height: 2.0;
+}
  
+.form-check {
+  font-size: 1.2em;
+  font-family: "Cambay";
+  font-weight: regular;
+}
+
+#tag-filter {
+  margin-left: 10%;
+}
+
+.input-group .bootstrap-tagsinput {
+    width: 100%;
+    margin-bottom: 1px;
+}

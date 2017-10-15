@@ -8,6 +8,22 @@ module.exports.find = function(req, res){
   res.render('find', {title: 'Fact Finder'});
 };
 
+/* Controller for fact filter */
+module.exports.tags = function(req, res){
+  res.render('filter-facts', {
+    title: 'Fact Filter',
+    link: '#' 
+  });
+};
+
+/* Controller for fact search */
+module.exports.keywords = function(req, res){
+  res.render('search-facts', {
+    title: 'Fact Search',
+    link: '#' 
+  });
+};
+
 /*Controller to display all facts*/
 module.exports.allFacts = function(req,res){
   res.render('index', {title: 'View All Facts', desc: 'All facts in DB will go here'});

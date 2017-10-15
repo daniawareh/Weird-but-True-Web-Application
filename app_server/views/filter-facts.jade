@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  .row
+    .card-columns.white-bgd.card-shadow.col-xs-12.col-sm-10.col-sm-offset-1
+      .card
+        .row.card-header
+          h1.card-title.text-center= title
+          img#logo.img-fluid.center-block.animated.jello(src="/images/tag.svg", alt="Image of tropical island with palm trees to represent logo")
+        .row.card-block
+            p.primary-text.text-center Select a fact category below.
+            p.primary-text.text-center
+              small Choose multiple to narrow your search
+        .row.card-block
+          .col-md-6.col-centered
+            form#tag-filter(action="#{link}" method="post")
+              .form-check
+                label.form-check-label
+                  input.form-check-input(type='checkbox', name="filters", value='space')
+                  | &nbsp; Space
+              .form-check
+                label.form-check-label
+                  input.form-check-input(type='checkbox', name='filters', value='geography')
+                  | &nbsp; Geography
+              .form-check
+                label.form-check-label
+                  input.form-check-input(type='checkbox', name='filters', value='chemistry')
+                  | &nbsp; Chemistry
+              .form-check
+                label.form-check-label
+                  input.form-check-input(type='checkbox', name='filters', value='chemistry')
+                  | &nbsp; Biology
+              br
+              button.btn.text-center.charcoal-bgd.btn-primary.center-block(type='submit') Find by category
