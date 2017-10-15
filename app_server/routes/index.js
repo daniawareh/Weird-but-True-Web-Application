@@ -3,6 +3,8 @@ var router = express.Router();
 var ctrlFacts = require('../controllers/facts');
 
 router.get('/', ctrlFacts.features); // home page aka menu
+router.get('/find/tags', ctrlFacts.tags); // find facts by category
+router.get('/find/keywords', ctrlFacts.keywords); // find facts by keywords
 router.get('/find', ctrlFacts.find); // fact finder menu
 router.get('/facts/all', ctrlFacts.allFacts); //view all facts
 router.get('/facts/new', ctrlFacts.addFact); //add a new fact; id can be added at the end
