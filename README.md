@@ -23,3 +23,7 @@ Install dependencies:
 Start the web app:
 
 `$ npm start`
+
+Visit the live web app here:
+
+https://weird-but-true.herokuapp.com/
