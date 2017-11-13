@@ -8,12 +8,33 @@ var sendJsonResponse = function(res, status, content) {
 
 /* Add a new fact to database. */
 module.exports.addFact = function (req, res) { 
-    sendJsonResponse(res, 200, {"status" : "success"});
+    if (req.body && req.body.tags && req.body.fact){
+        console.log(req.body);
+        var tags = req.body.tags.split(",");
+        
+        Fact.create({
+            fact: req.body.fact,
+            tags: tags,
+        }, function(err, fact) {
+          if(err) {
+            sendJsonResponse(res, 400, error);
+          } else {
+            sendJsonResponse(res, 201, fact);
+          }
+        });
+    }
+    else {
+        sendJsonResponse(res, 404, {"message" : "All fields required"});
+    }
 };
 
 /* Get all facts from database. */
-module.exports.getAllFacts = function (req, res) { 
-    sendJsonResponse(res, 200, {"status" : "success"});
+module.exports.getAllFacts = function (req, res) {
+    Fact.find({}, 
+        function(err, facts) {
+            sendJsonResponse(res, 200, facts);
+        }
+    );
 };
 
 /* Get a specific fact from database. */
@@ -40,10 +61,40 @@ module.exports.getFact = function (req, res) {
 
 /* Edit a specific fact. */
 module.exports.editFact = function (req, res) { 
-    sendJsonResponse(res, 200, {"status" : "success"});
+    if (req.params && req.params.factid){
+        //do stuff!
+    }
+    else {
+        sendJsonResponse(res, 404, {"message": "No factid in request"});
+    }
 };
 
 /* Delete specific fact from database. */
 module.exports.deleteFact = function (req, res) { 
-    sendJsonResponse(res, 200, {"status" : "success"});
+    if (req.params && req.params.factid){
+        var factid = req.params.factid;
+        if(factid) {
+          Fact
+          .findByIdAndRemove(factid)
+          .exec(
+            function(err, fact) {
+              if(err) {
+                // Respond with failure
+                sendJsonResponse(res, 404, err);
+                return;
+              }
+              // Respond with success
+              sendJsonResponse(res, 204, null);
+            }
+          )
+        } else {
+            // Respond with failure
+            sendJsonResponse(res, 404, {
+              "message": "No valid factid provided"
+            });
+        }
+    }
+    else {
+        sendJsonResponse(res, 404, {"message": "No factid in request"});
+    }
 };
