@@ -1,3 +1,13 @@
+var request = require('request');
+
+var apiOptions = {
+  server: "http://localhost:3000"
+};
+
+if (process.env.NODE_ENV === 'production') {
+  apiOptions.server = "http://weird-but-true.herokuapp.com";
+}
+
 /* Controller for home/landing/menu page */
 module.exports.features = function(req, res){
   res.render('index', {title: 'Main Menu'});
@@ -36,7 +46,27 @@ module.exports.allFacts = function(req,res){
 
 /* Controller to add a new fact */
 module.exports.addFact = function(req, res){
-  res.render('index', {title: 'Add a Fact', desc:'Fact form goes here'});
+  res.render('add-fact', {title: 'Add a Fact', desc:'Fact form goes here'});
+};
+
+/* Makes API call to add a fact to the DB */
+module.exports.addFactToDb = function(req, res){
+  console.log(req.body); 
+  var requestOptions, path;
+  path = '/api/facts';
+
+  requestOptions = {
+    url: apiOptions.server + path,
+    method: "POST",
+    form: req.body
+  };
+
+  request(
+    requestOptions,
+    function(err, response, body) {
+      addedFact(err, req, res, body);
+    }
+  );
 };
 
 /* Controller to edit a fact */
@@ -55,8 +85,8 @@ module.exports.removedFact = function(req, res){
 };
 
 /* Controller for fact added page */
-module.exports.addedFact = function(req, res){
-  res.render('index', {title: 'Fact Added', desc: 'fact has been added message goes here'});
+addedFact = function(err, req, res, body){
+  res.render('added-fact', {title: 'Fact Added', desc: 'fact has been added message goes here'});
 };
 
 /* Controller for fact edited page */
