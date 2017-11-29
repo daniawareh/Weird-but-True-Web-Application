@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .row
+    .card-columns.white-bgd.card-shadow.col-xs-12.col-sm-10.col-sm-offset-1
+      .card
+        .row.card-header
+          h1.card-title.text-center= title
+        .row.card-block
+            p.primary-text.text-center= desc
+        .row.card-block
+          .col-md-6.col-centered
+            form(action='/facts/new' method="post")
+             div.input-group
+               label(for='fact') Fact:
+               input#fact.form-control(type='text', placeholder='fact goes here', name='fact', required='')
+             div.input-group
+               label(for='tags') Tags:
+               input#tags.form-control(type='text', data-role="tagsinput", placeholder='tag 1, tag 2, tag 3...', name='tags', required='')
+               button.btn.btn-primary(type='submit') Submit
