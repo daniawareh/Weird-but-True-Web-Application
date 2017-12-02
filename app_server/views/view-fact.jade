@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .row
+    .card-columns.white-bgd.card-shadow.col-xs-12.col-sm-10.col-sm-offset-1
+      .card
+        .row.card-header
+          h1.card-title.text-center= fact
+        .row.card-block
+            p.primary-text.text-center= tags
+        .row.card-block
+          .col-md-6.col-centered
+            a.btn-a.text-center(href="/")
+              .btn.charcoal-bgd.btn-primary.center-block
+                p Back to main menu

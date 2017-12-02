@@ -46,7 +46,7 @@ module.exports.allFacts = function(req,res){
 
 /* Controller to add a new fact */
 module.exports.addFact = function(req, res){
-  res.render('add-fact', {title: 'Add a Fact', desc:'Fact form goes here'});
+  res.render('add-fact', {title: 'Add a Fact', desc:'Add a fact by entering the fact and related tags.'});
 };
 
 /* Makes API call to add a fact to the DB */
@@ -76,7 +76,38 @@ module.exports.editFact = function(req, res){
 
 /* Controller to view a fact */
 module.exports.viewFact = function(req, res){
-  res.render('index', {title: 'View Fact', desc: 'fact + tags here'});
+  var requestOptions, path;
+  path = '/api/facts/' + req.params.factid;
+  requestOptions = {
+    url: apiOptions.server + path,
+    method: "GET",
+    json: {},
+    qs: {}
+  };
+  request(
+    requestOptions,
+    function(err, response, body) {
+      console.log(body);
+
+      if(err) {
+        console.log(error);
+        return;
+      }
+      
+      if(body.msg === "factid not found") {
+        res.render('error', { 
+            message: "Event not found"
+        }); 
+      } else {
+        console.log("START: " + body.start);
+        res.render('view-fact', { 
+            fact: body.fact,
+            tags: body.tags
+        });
+      }
+      
+    }
+  )
 };
 
 /* Controller for fact removed page */
