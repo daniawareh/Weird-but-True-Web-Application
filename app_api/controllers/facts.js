@@ -37,6 +37,20 @@ module.exports.getAllFacts = function (req, res) {
     );
 };
 
+/*Get one random fact from database */
+module.exports.randomFact = function(req, res){
+    console.log("random fact api controller");
+    Fact.count().exec(function (err, count) {
+        var random = Math.floor(Math.random() * count);
+        console.log("random "+random);
+        Fact.findOne().skip(random).exec(
+            function(err, result){
+                sendJsonResponse(res, 200, result);
+            }
+        );
+    });
+};
+
 /* Get a specific fact from database. */
 module.exports.getFact = function (req, res) {
     if (req.params && req.params.factid){
