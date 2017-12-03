@@ -98,7 +98,7 @@ module.exports.addFactToDb = function(req, res){
   request(
     requestOptions,
     function(err, response, body) {
-      addedFact(err, req, res, body);
+      confirmationMessage(err, req, res, body);
     }
   );
 };
@@ -121,22 +121,24 @@ module.exports.viewFact = function(req, res){
   request(
     requestOptions,
     function(err, response, body) {
-      console.log(body);
+      console.log("view fact body: "+body);
 
       if(err) {
-        console.log(error);
+        console.log("view fact error " +error);
         return;
       }
       
-      if(body.msg === "factid not found") {
+      if(response.statusCode === 404) {
         res.render('error', { 
-            message: "Event not found"
+            message: "Fact not found",
+            error: {status: 404}
         }); 
       } else {
-        console.log("START: " + body.start);
+        console.log("START: " + body);
         res.render('view-fact', { 
             fact: body.fact,
-            tags: body.tags
+            tags: body.tags,
+            id: body._id
         });
       }
       
@@ -144,14 +146,39 @@ module.exports.viewFact = function(req, res){
   )
 };
 
+/* Controller that makes an API call to delete a specific fact */
+module.exports.deleteFact = function(req, res){
+  var requestOptions, path;
+  path = '/api/facts/' + req.params.factid;
+  requestOptions = {
+    url: apiOptions.server + path,
+    method: "DELETE",
+    json: {},
+    qs: {}
+  };
+  request(
+    requestOptions,
+    function(err, response, body) {
+      console.log(body);
+
+      if(err) {
+        console.log(error);
+        return;
+      }
+        console.log("START: " + body);
+        removedFact(err, req, res, body);      
+    }
+  )
+};
+
 /* Controller for fact removed page */
-module.exports.removedFact = function(req, res){
-  res.render('index', {title: 'Fact Removed', desc: 'fact has been removed message goes here'});
+removedFact = function(err, req, res, body){
+  res.render('message-page', {title: 'Fact Removed', desc: 'Fact has been successfully removed'});
 };
 
 /* Controller for fact added page */
-addedFact = function(err, req, res, body){
-  res.render('added-fact', {title: 'Fact Added', desc: 'fact has been added message goes here'});
+confirmationMessage = function(err, req, res, body){
+  res.render('message-page', {title: 'Fact Added', desc: 'Fact has been successfully added!'});
 };
 
 /* Controller for fact edited page */
