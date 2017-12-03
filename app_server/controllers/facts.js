@@ -39,10 +39,44 @@ module.exports.keywords = function(req, res){
   });
 };
 
-/*Controller to display all facts*/
+/*Controller that makes API call to display all facts*/
 module.exports.allFacts = function(req,res){
-  res.render('index', {title: 'View All Facts', desc: 'All facts in DB will go here'});
+  var requestOptions, path;
+  
+    path = '/api/facts';
+  
+    requestOptions = {
+      url: apiOptions.server + path,
+      method: "GET",
+      json: {},
+      qs: {}
+    };
+  
+    request(
+      requestOptions,
+      function(err, response, body) {
+        renderAllFactsPage(err, req, res, body);
+      }
+    );
 };
+
+/* Renders event list with all facts fetched from API */
+var renderAllFactsPage = function(err, req, res, responseBody) {
+  console.log(responseBody);
+  if(!(responseBody instanceof Array)) {
+    message = "API lookup error" + responseBody;
+    responseBody = [];
+  } else {
+      if(!responseBody.length) {
+        message = "No facts found";
+      }
+  }
+  res.render('facts-list', {
+    title: 'All Facts',
+    factsList: responseBody,
+    link: "/facts/view",
+});
+}
 
 /* Controller to add a new fact */
 module.exports.addFact = function(req, res){

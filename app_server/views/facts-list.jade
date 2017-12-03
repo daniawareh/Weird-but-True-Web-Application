@@ -6,8 +6,11 @@ block content
       .card
         .row.card-header
           h1.card-title.text-center= title
-        .row.card-block
-            p.primary-text.text-center= desc
+      .all
+        ul.nav
+          each fact in factsList
+            li
+              a(href="#{link}/#{fact._id}") #{fact.fact}
         .row.card-block
           .col-md-6.col-centered
             a.btn-a.text-center(href="/")

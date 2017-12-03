@@ -1,2 +1,7 @@
 .gitignore
 node_modules
+.DS_Store
+app_server/.DS_Store
+app_server/views/.DS_Store
+npm-debug.log
+public/.DS_Store
