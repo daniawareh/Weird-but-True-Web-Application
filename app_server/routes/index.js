@@ -16,5 +16,6 @@ router.get('/facts/edited', ctrlFacts.editedFact); //confirmation message for wh
 
 router.post('/facts/new', ctrlFacts.addFactToDb); //makes an API call to add fact to db
 router.post('/facts/keywords', ctrlFacts.keywordsSearch); //makes an API call to fetch facts with specified tags
+router.post('/facts/categories', ctrlFacts.categorySearch); //makes an API call to fetch facts with selected categories
 
 module.exports = router;

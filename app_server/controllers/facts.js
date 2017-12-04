@@ -27,15 +27,34 @@ module.exports.find = function(req, res){
 module.exports.tags = function(req, res){
   res.render('filter-facts', {
     title: 'Fact Filter',
-    link: '#' 
+    link: '/facts/categories' 
   });
+};
+
+/* Controller that makes API call to fetch events by category(s) */
+module.exports.categorySearch = function(req, res){
+  console.log("req body");
+  console.log(req.body);
+  var requestOptions, path;
+  path = '/api/facts/categories';
+  requestOptions = {
+    url: apiOptions.server + path,
+    method: "POST",
+    form: req.body
+  };
+   request(
+    requestOptions,
+    function(err, response, body) {
+      renderKeySearchFacts(err, req, res, body);
+    }
+  );
 };
 
 /* Controller for fact search */
 module.exports.keywords = function(req, res){
   res.render('search-facts', {
     title: 'Fact Search',
-    link: '#' 
+    link: '/facts/keywords' 
   });
 };
 

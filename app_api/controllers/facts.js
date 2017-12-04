@@ -140,3 +140,37 @@ module.exports.tagsSearch = function (req, res){
         sendJsonResponse(res, 201, facts);  
       });
 };
+
+module.exports.categorySearch = function (req, res){
+    console.log(req.body);
+
+    var filterArray = [];
+    var regexArray = [];
+
+    if (Array.isArray(req.body.filters)) {
+        filterArray = req.body.filters;
+    } else {
+        filterArray.push(req.body.filters);
+    }
+
+    for (var f = 0; f < filterArray.length; f++) {
+        var filterObj = { "filters": "" };
+        filterObj.filters = filterArray[f];
+        console.log(filterArray[f]);
+        var regExp = new RegExp('.*' + filterArray[f] + '.*', 'i');
+        console.log(regExp);
+        regexArray.push(regExp);
+    }
+
+    console.log(JSON.toString(regexArray));
+
+    Fact.find({ $or: [{ tags: { $in: filterArray } }, { description: { $in: regexArray } }, { title: { $in: regexArray } }] }, function (err, facts) {
+        if (err) {
+            // Error trap: If Mongoose returns an error, send 404 and exit
+            sendResponse(res, 404, err);
+            return;
+        }
+        console.log('Facts: ' + JSON.stringify(facts));
+        sendJsonResponse(res, 201, facts);
+    });
+};

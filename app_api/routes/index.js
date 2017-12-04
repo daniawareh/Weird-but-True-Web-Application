@@ -8,6 +8,7 @@ router.get('/fact/random', ctrlFacts.randomFact); //fetch a specific fact
 
 router.post('/facts', ctrlFacts.addFact); //create a new fact
 router.post('/facts/tags', ctrlFacts.tagsSearch); //tag based search
+router.post('/facts/categories', ctrlFacts.categorySearch); //search based on categories
 
 router.put('/facts/:factid', ctrlFacts.editFact); //update a specific fact
 
