@@ -44,9 +44,6 @@ module.exports.keywordsSearch = function(req, res){
   var requestOptions, path;
   
     path = '/api/facts/tags';
-
-    console.log("req body");
-    console.log(req.body); // delete pls
   
     requestOptions = {
       url: apiOptions.server + path,
@@ -69,20 +66,26 @@ module.exports.keywordsSearch = function(req, res){
 
 /* Controller that renders page with facts from keywordsSearch */
 var renderKeySearchFacts = function(err, req, res, responseBody){
-  console.log(responseBody);
-  if(!(responseBody instanceof Array)) {
-    message = "API lookup error" + responseBody;
-    responseBody = [];
+  var msg;
+
+  if (!Array.isArray(JSON.parse(responseBody))) {
+    console.log("API lookup error");
+    msg = "API lookup error" + responseBody;
+    responseBody = JSON.stringify([]);
   } else {
-      if(!responseBody.length) {
-        message = "No facts found that match your search";
-      }
+    if (!JSON.parse(responseBody).length) {
+      console.log("no events found");
+      msg = "No events match your search";
+      responseBody = JSON.stringify([]);
+    }
   }
+
+  responseBody = JSON.parse(responseBody);
   res.render('facts-list', {
     title: 'Matching Facts',
     factsList: responseBody,
     link: "/facts/view",
-});
+  });
 }
 
 /*Controller that makes API call to display all facts*/
