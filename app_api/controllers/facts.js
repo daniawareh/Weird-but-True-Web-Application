@@ -112,3 +112,21 @@ module.exports.deleteFact = function (req, res) {
         sendJsonResponse(res, 404, {"message": "No factid in request"});
     }
 };
+
+/* Search for fact(s) based on tags. */
+module.exports.searchFacts = function (req, res){
+    var keywords = req.body.tags.split(",");
+    console.log(keywords);
+
+    Fact.find({tags: {$in: keywords}}, function(err, facts){
+        if(facts.length === 0){
+            sendJsonResponse(res, 200, {msg: 'No facts match your search'});
+            return;
+        } else if (err) {
+            sendJsonResponse(res, 404, err);
+            return;
+        }
+        console.log('Facts: ' +facts);
+        sendJsonResponse(res, 201, facts);
+    });
+};
