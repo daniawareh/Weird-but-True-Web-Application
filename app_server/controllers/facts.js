@@ -39,6 +39,52 @@ module.exports.keywords = function(req, res){
   });
 };
 
+/* Controller that makes API call to fetch facts by keyword(s) */
+module.exports.keywordsSearch = function(req, res){
+  var requestOptions, path;
+  
+    path = '/api/facts/tags';
+
+    console.log("req body");
+    console.log(req.body); // delete pls
+  
+    requestOptions = {
+      url: apiOptions.server + path,
+      method: "POST",
+      form: req.body
+    };
+  
+    request(
+      requestOptions,
+      function(err, response, body) {
+        if(err) {
+          console.log(err);
+          return;
+        }
+        console.log(body);
+        renderKeySearchFacts(err, req, res, body);
+      }
+    );
+};
+
+/* Controller that renders page with facts from keywordsSearch */
+var renderKeySearchFacts = function(err, req, res, responseBody){
+  console.log(responseBody);
+  if(!(responseBody instanceof Array)) {
+    message = "API lookup error" + responseBody;
+    responseBody = [];
+  } else {
+      if(!responseBody.length) {
+        message = "No facts found that match your search";
+      }
+  }
+  res.render('facts-list', {
+    title: 'Matching Facts',
+    factsList: responseBody,
+    link: "/facts/view",
+});
+}
+
 /*Controller that makes API call to display all facts*/
 module.exports.allFacts = function(req,res){
   var requestOptions, path;

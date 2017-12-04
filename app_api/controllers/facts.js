@@ -114,19 +114,29 @@ module.exports.deleteFact = function (req, res) {
 };
 
 /* Search for fact(s) based on tags. */
-module.exports.searchFacts = function (req, res){
-    var keywords = req.body.tags.split(",");
-    console.log(keywords);
-
-    Fact.find({tags: {$in: keywords}}, function(err, facts){
-        if(facts.length === 0){
-            sendJsonResponse(res, 200, {msg: 'No facts match your search'});
-            return;
-        } else if (err) {
-            sendJsonResponse(res, 404, err);
+module.exports.tagsSearch = function (req, res){
+    var keys = req.body.tags.split(",");
+    
+    console.log("JSON stringify keys");
+      console.log(JSON.stringify(keys));
+    
+      var regexArray = [];
+    
+      for(var key = 0; key < keys.length; key++) {
+        var regExp = new RegExp('.*' + keys[key] + '.*', 'i');
+        console.log(regExp);
+        regexArray.push(regExp);
+      }
+    
+      console.log(JSON.toString(regexArray));
+    
+      Fact.find( { $or: [ { tags: { $in: keys } }, { description: { $in: regexArray } }, { title: { $in: regexArray } } ] }, function (err, facts){
+        if(err) {
+          // Error trap: If Mongoose returns an error, send 404 and exit
+            sendResponse(res, 404, err);
             return;
         }
-        console.log('Facts: ' +facts);
-        sendJsonResponse(res, 201, facts);
-    });
+        console.log('Facts: '+ JSON.stringify(facts));
+        sendJsonResponse(res, 201, facts);  
+      });
 };
