@@ -6,11 +6,24 @@ block content
       .card
         .row.card-header
           h1.card-title.text-center= title
-      .all
-        ul.nav
-          each fact in factsList
-            li
-              a(href="#{link}/#{fact._id}") #{fact.fact}
+        .row.card-block.facts
+          ul.nav
+            each fact in factsList
+              li
+                .fact
+                  h2.primary-color
+                    a.no-underline.inherit(href="#{link}/#{fact._id}") #{fact.fact}
+                    a(href="/facts/remove/#{fact._id}")
+                      i#trash.fa.fa-trash-o.pull-right(aria-hidden="true")
+                  p.primary-text#fact-tags= " "
+                    strong tags:&nbsp;
+                    - var i = 0; 
+                    each tag in fact.tags
+                      - i++;
+                      if(i < fact.tags.length)
+                        = tag + ", "
+                      else
+                        = tag
         .row.card-block
           .col-md-6.col-centered
             a.btn-a.text-center(href="/")

@@ -11,10 +11,15 @@ block content
         .row.card-block
           .col-md-6.col-centered
             form(action='/facts/new' method="post")
+             div.form-group
+              h2
+                label(for='fact') Fact:
+              textarea#fact.form-control(type='text', placeholder='enter your fact', name='fact', required='')
              div.input-group
-               label(for='fact') Fact:
-               input#fact.form-control(type='text', placeholder='fact goes here', name='fact', required='')
-             div.input-group
+              h2
                label(for='tags') Tags:
-               input#tags.form-control(type='text', data-role="tagsinput", placeholder='tag 1, tag 2, tag 3...', name='tags', required='')
-               button.btn.btn-primary(type='submit') Submit
+              input#tags.form-control(type='text', data-role="tagsinput", placeholder='tag 1, tag 2, tag 3...', name='tags', required='')
+              br
+              br
+              button.btn.btn-primary(type='submit') Submit
+              br

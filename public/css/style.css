@@ -271,3 +271,25 @@ input[type="checkbox"]
     width: 100%;
     margin-bottom: 1px;
 }
+
+#trash {
+  color: crimson;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 1.1em;
+}
+
+.inherit {
+  color: inherit;
+}
+
+#fact-tags {
+  margin-top: .5em;
+}
+
+.facts {
+  margin: 5%;
+}
+
+.nav li { 
+  border-bottom: 1px solid lightgrey; 
+}
